@@ -97,40 +97,49 @@
   </div>
 </div>
 <script>
-/* pseudo code
-- Vérifier que tous les champs ne sont pas vides,et afficher message*/
-// Récupère les valeurs des champs
-const firstName = document.getElementById('first-name').value;
-console.log(firstName);
-const lastName = document.getElementById('last-name').value;
-console.log(lastName);
-const message = document.getElementById('message').value;
-console.log(message);
-const errorMessage = document.getElementById('error-message');
-
-// Vérifie si tous les champs sont remplis si l’un est vide : afficher le message 
-//d’erreur déjà présent dans le HTML (caché par défaut).
-    if (firstName === '' || lastName === '' || message === ''){
-      console.log("vide");
+  // recupere les elements de la page
+  const submitButton = document.querySelector('form button');
+  const commentForm = document.querySelector('form');
+  const errorMessage = document.getElementById('error-message');
+  const commentList = document.getElementById('comment-list');
+  // action au click boutton
+  submitButton.addEventListener('click', (event) => {
+    
+    // recupere les valeurs des champs
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const message = document.getElementById('message').value.trim();
+  
+    // verifie si le champ est vide
+    if (firstName === '' || lastName === '' || message === '') {
+      // affiche le message d'erreur
       errorMessage.style.display = 'block';
+    } else {
+      // cahe le message d'erreur
+      errorMessage.style.display = 'none';
+      // cre la nouvelle div new comment
+      const newComment = document.createElement('div');
+      newComment.className = 'flex space-x-4 text-sm text-gray-500';
+      // cre le contenu
+      newComment.innerHTML = `
+        <div class="flex-1 py-10 border-t border-gray-200">
+          <h3 class="font-medium text-gray-900">${firstName} ${lastName}</h3>
+          <div class="prose prose-sm mt-4 max-w-none text-gray-500">
+            <p>${message}</p>
+          </div>
+        </div>
+      `;
+  
+      // affiche le nouveau commantaire dans la page
+      commentList.appendChild(newComment);
+  
+      // efface la valeur des champs
+      document.getElementById('first-name').value = '';
+      document.getElementById('last-name').value = '';
+      document.getElementById('message').value = '';
     }
-
-      
-
-
-//*********************
-/*- Ajouter le contenu de ce formulaire dans un nouveau commentaire 
-au sein de la liste 
-déjà présente 
-(en reprenant les balises HTML d’un des commentaires).
-
-- Supprimer le contenu des champs du formulaire une fois le nouveau 
-commentaire affiché dans la liste.
-
--Le client de l’agence ne veut plus que la page se recharge quand un utilisateur écrit un 
-commentaire*/
-
-</script>
+  });
+  </script>
 </body>
 </html>
 
