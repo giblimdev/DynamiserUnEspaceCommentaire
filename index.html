@@ -97,6 +97,38 @@
   </div>
 </div>
 <script>
+/* pseudo code
+- Vérifier que tous les champs ne sont pas vides,et afficher message*/
+// Récupère les valeurs des champs
+const firstName = document.getElementById('first-name').value;
+console.log(firstName);
+const lastName = document.getElementById('last-name').value;
+console.log(lastName);
+const message = document.getElementById('message').value;
+console.log(message);
+const errorMessage = document.getElementById('error-message');
+
+// Vérifie si tous les champs sont remplis si l’un est vide : afficher le message 
+//d’erreur déjà présent dans le HTML (caché par défaut).
+    if (firstName === '' || lastName === '' || message === ''){
+      console.log("vide");
+      errorMessage.style.display = 'block';
+    }
+
+      
+
+
+//*********************
+/*- Ajouter le contenu de ce formulaire dans un nouveau commentaire 
+au sein de la liste 
+déjà présente 
+(en reprenant les balises HTML d’un des commentaires).
+
+- Supprimer le contenu des champs du formulaire une fois le nouveau 
+commentaire affiché dans la liste.
+
+-Le client de l’agence ne veut plus que la page se recharge quand un utilisateur écrit un 
+commentaire*/
 
 </script>
 </body>
