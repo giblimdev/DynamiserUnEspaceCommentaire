@@ -104,40 +104,39 @@
   const commentList = document.getElementById('comment-list');
   // action au click boutton
   submitButton.addEventListener('click', (event) => {
-    
+    // evite le rechargement
+    event.preventDefault();
     // recupere les valeurs des champs
     const firstName = document.getElementById('first-name').value.trim();
     const lastName = document.getElementById('last-name').value.trim();
     const message = document.getElementById('message').value.trim();
-  
     // verifie si le champ est vide
     if (firstName === '' || lastName === '' || message === '') {
-      // affiche le message d'erreur
+       
+    // affiche le message d'erreur
       errorMessage.style.display = 'block';
     } else {
-      // cahe le message d'erreur
-      errorMessage.style.display = 'none';
-      // cre la nouvelle div new comment
-      const newComment = document.createElement('div');
-      newComment.className = 'flex space-x-4 text-sm text-gray-500';
-      // cre le contenu
-      newComment.innerHTML = `
-        <div class="flex-1 py-10 border-t border-gray-200">
-          <h3 class="font-medium text-gray-900">${firstName} ${lastName}</h3>
-          <div class="prose prose-sm mt-4 max-w-none text-gray-500">
-            <p>${message}</p>
+        // cahe le message d'erreur
+        errorMessage.style.display = 'none';
+        // cre la nouvelle div new comment
+        const newComment = document.createElement('div');
+        newComment.className = 'flex space-x-4 text-sm text-gray-500';
+        // cre le contenu
+        newComment.innerHTML = `
+          <div class="flex-1 py-10 border-t border-gray-200">
+            <h3 class="font-medium text-gray-900">${firstName} ${lastName}</h3>
+            <div class="prose prose-sm mt-4 max-w-none text-gray-500">
+              <p>${message}</p>
+            </div>
           </div>
-        </div>
-      `;
-  
-      // affiche le nouveau commantaire dans la page
-      commentList.appendChild(newComment);
-  
-      // efface la valeur des champs
-      document.getElementById('first-name').value = '';
-      document.getElementById('last-name').value = '';
-      document.getElementById('message').value = '';
-    }
+        `;
+        // affiche le nouveau commantaire dans la page
+        commentList.appendChild(newComment);
+        // efface la valeur des champs
+        document.getElementById('first-name').value = '';
+        document.getElementById('last-name').value = '';
+        document.getElementById('message').value = '';
+      }
   });
   </script>
 </body>
